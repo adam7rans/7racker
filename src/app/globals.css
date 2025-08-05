@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 215 20% 5%; /* much darker stone */
+    --foreground: 210 20% 90%; /* slightly darker text */
+    --card: 215 20% 8%; /* much darker cards */
+    --card-foreground: 210 20% 90%; /* slightly darker text */
+    --popover: 215 20% 5%; /* much darker popovers */
+    --popover-foreground: 210 20% 90%; /* slightly darker text */
+    --primary: 215 20% 55%; /* darker primary */
+    --primary-foreground: 215 20% 5%; /* much darker background */
+    --secondary: 215 20% 10%; /* much darker secondary */
+    --secondary-foreground: 210 20% 90%; /* slightly darker text */
+    --muted: 215 20% 10%; /* much darker muted */
+    --muted-foreground: 215 20% 55%; /* darker muted text */
+    --accent: 215 20% 12%; /* much darker accent */
+    --accent-foreground: 210 20% 90%; /* slightly darker text */
+    --destructive: 0 60% 25%; /* darker red */
+    --destructive-foreground: 210 20% 90%; /* slightly darker text */
+    --border: 215 20% 12%; /* much darker borders */
+    --input: 215 20% 12%; /* much darker inputs */
+    --ring: 215 20% 55%; /* darker ring */
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+}
