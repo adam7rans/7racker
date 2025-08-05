@@ -8,7 +8,7 @@ import { DarkModeIcon } from "./icons/darkmode-icon"
 import { SystemIcon } from "./icons/system-icon"
 
 export function ThemeToggle() {
-  const { setTheme } = useTheme()
+  const { setTheme, resolvedTheme } = useTheme()
   const [isOpen, setIsOpen] = React.useState(false)
   const [mounted, setMounted] = React.useState(false)
 
@@ -53,7 +53,7 @@ export function ThemeToggle() {
           className={`absolute rounded-full transition-all duration-300 ease-in-out cursor-pointer flex items-center justify-center
             ${isOpen ? 'w-[30rem] h-[30rem]' : 'w-3 h-3'}
             ${!isOpen ? 'hover:!w-6 hover:!h-6' : ''}
-            ${isOpen ? 'bg-white dark:bg-[#0a0a0a] border border-black dark:border-white shadow-2xl' : 'bg-black dark:bg-white shadow-lg'}`}
+            ${isOpen ? 'shadow-2xl' : 'shadow-lg'}`}
           style={{
             position: 'fixed',
             left: '40px',
@@ -64,7 +64,11 @@ export function ThemeToggle() {
             overflow: 'visible',
             pointerEvents: isOpen ? 'none' : 'auto',
             minWidth: '12px',
-            minHeight: '12px'
+            minHeight: '12px',
+            backgroundColor: isOpen
+              ? (resolvedTheme === 'dark' ? '#0a0a0a' : '#ffffff')
+              : (resolvedTheme === 'dark' ? '#ffffff' : '#000000'),
+            border: isOpen ? `1px solid ${resolvedTheme === 'dark' ? '#ffffff' : '#000000'}` : 'none'
           }}
         />
       </div>
@@ -82,7 +86,7 @@ export function ThemeToggle() {
                 setTheme('light')
                 setIsOpen(false)
               }}
-              className="flex items-center space-x-3 text-sm text-black dark:text-white transition-all duration-200 hover:text-blue-400 hover:bg-black/10 dark:hover:bg-white/10 px-3 py-2 rounded-md cursor-pointer"
+              className="flex items-center space-x-3 text-sm text-foreground transition-all duration-200 hover:text-blue-400 hover:bg-foreground/10 px-3 py-2 rounded-md cursor-pointer"
             >
               <LightModeIcon size={40} className="flex-shrink-0" />
               <span>Light</span>
@@ -97,7 +101,7 @@ export function ThemeToggle() {
                 setTheme('dark')
                 setIsOpen(false)
               }}
-              className="flex items-center space-x-3 text-sm text-black dark:text-white transition-all duration-200 hover:text-blue-400 hover:bg-black/10 dark:hover:bg-white/10 px-3 py-2 rounded-md cursor-pointer"
+              className="flex items-center space-x-3 text-sm text-foreground transition-all duration-200 hover:text-blue-400 hover:bg-foreground/10 px-3 py-2 rounded-md cursor-pointer"
             >
               <DarkModeIcon size={40} className="flex-shrink-0" />
               <span>Dark</span>
@@ -112,7 +116,7 @@ export function ThemeToggle() {
                 setTheme('system')
                 setIsOpen(false)
               }}
-              className="flex items-center space-x-3 text-sm text-black dark:text-white transition-all duration-200 hover:text-blue-400 hover:bg-black/10 dark:hover:bg-white/10 px-3 py-2 rounded-md cursor-pointer"
+              className="flex items-center space-x-3 text-sm text-foreground transition-all duration-200 hover:text-blue-400 hover:bg-foreground/10 px-3 py-2 rounded-md cursor-pointer"
             >
               <SystemIcon size={40} className="flex-shrink-0" />
               <span>System</span>
@@ -127,7 +131,7 @@ export function ThemeToggle() {
                 window.open('https://x.com/7racker', '_blank', 'noopener,noreferrer')
                 setIsOpen(false)
               }}
-              className="flex items-center space-x-3 text-sm text-black dark:text-white transition-all duration-200 hover:text-blue-400 hover:bg-black/10 dark:hover:bg-white/10 px-3 py-2 rounded-md cursor-pointer"
+              className="flex items-center space-x-3 text-sm text-foreground transition-all duration-200 hover:text-blue-400 hover:bg-foreground/10 px-3 py-2 rounded-md cursor-pointer"
             >
               <Image 
                 src="/icons/x-logo.svg" 

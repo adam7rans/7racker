@@ -45,9 +45,7 @@
     --input: 215 20% 12%; /* much darker inputs */
     --ring: 215 20% 55%; /* darker ring */
   }
-}
 
-@layer base {
   * {
     border-color: hsl(var(--border));
   }

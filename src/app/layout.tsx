@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/lib/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Logo } from "@/components/ui/logo";
 import Image from "next/image";
 
 const geistSans = Geist({
@@ -34,22 +35,7 @@ export default function RootLayout({
           <ThemeToggle />
           {/* Logo positioned snug in top-right corner */}
           <div className="fixed right-0 top-0 z-[9999] hidden sm:block">
-            <div className="relative w-[249.06px] h-[54.92px]">
-              <Image 
-                src="/logo/logo-lightmode.svg" 
-                alt="7racker Logo" 
-                fill 
-                className="object-contain dark:hidden" 
-                priority 
-              />
-              <Image 
-                src="/logo/logo-darkmode.svg" 
-                alt="7racker Logo" 
-                fill 
-                className="object-contain hidden dark:block" 
-                priority 
-              />
-            </div>
+            <Logo />
           </div>
           <div className="flex min-h-screen flex-col">
             <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
