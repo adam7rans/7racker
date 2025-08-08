@@ -11,9 +11,21 @@ export function ThemeToggle() {
   const { setTheme, resolvedTheme } = useTheme()
   const [isOpen, setIsOpen] = React.useState(false)
   const [mounted, setMounted] = React.useState(false)
+  const [opacity, setOpacity] = React.useState(1)
 
   React.useEffect(() => {
     setMounted(true)
+  }, [])
+
+  React.useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY || 0
+      const next = Math.max(0, Math.min(1, 1 - y / 500))
+      setOpacity(next)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   React.useEffect(() => {
@@ -68,7 +80,9 @@ export function ThemeToggle() {
             backgroundColor: isOpen
               ? (resolvedTheme === 'dark' ? '#0a0a0a' : '#ffffff')
               : (resolvedTheme === 'dark' ? '#ffffff' : '#000000'),
-            border: isOpen ? `1px solid ${resolvedTheme === 'dark' ? '#ffffff' : '#000000'}` : 'none'
+            border: isOpen ? `1px solid ${resolvedTheme === 'dark' ? '#ffffff' : '#000000'}` : 'none',
+            opacity,
+            transition: 'opacity 150ms linear'
           }}
         />
       </div>
