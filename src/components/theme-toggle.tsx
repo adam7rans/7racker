@@ -12,6 +12,8 @@ export function ThemeToggle() {
   const [isOpen, setIsOpen] = React.useState(false)
   const [mounted, setMounted] = React.useState(false)
   const [opacity, setOpacity] = React.useState(1)
+  const [forceVisible, setForceVisible] = React.useState(false)
+  const lastYRef = React.useRef(0)
 
   React.useEffect(() => {
     setMounted(true)
@@ -20,13 +22,27 @@ export function ThemeToggle() {
   React.useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY || 0
-      const next = Math.max(0, Math.min(1, 1 - y / 500))
-      setOpacity(next)
+      const lastY = lastYRef.current
+      const delta = y - lastY
+
+      if (delta < 0) {
+        setForceVisible(true)
+        setOpacity(1)
+      } else if (delta > 0) {
+        if (forceVisible) setForceVisible(false)
+        const next = Math.max(0, Math.min(1, 1 - y / 500))
+        setOpacity(next)
+      } else if (!forceVisible) {
+        const next = Math.max(0, Math.min(1, 1 - y / 500))
+        setOpacity(next)
+      }
+
+      lastYRef.current = y
     }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [forceVisible])
 
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -64,7 +80,7 @@ export function ThemeToggle() {
         <div 
           className={`absolute rounded-full transition-all duration-300 ease-in-out cursor-pointer flex items-center justify-center
             ${isOpen ? 'w-[30rem] h-[30rem]' : 'w-3 h-3'}
-            ${!isOpen ? 'hover:!w-6 hover:!h-6' : ''}
+            ${!isOpen ? 'group-hover:!w-6 group-hover:!h-6 group-active:!w-8 group-active:!h-8' : ''}
             ${isOpen ? 'shadow-2xl' : 'shadow-lg'}`}
           style={{
             position: 'fixed',
@@ -81,8 +97,7 @@ export function ThemeToggle() {
               ? (resolvedTheme === 'dark' ? '#0a0a0a' : '#ffffff')
               : (resolvedTheme === 'dark' ? '#ffffff' : '#000000'),
             border: isOpen ? `1px solid ${resolvedTheme === 'dark' ? '#ffffff' : '#000000'}` : 'none',
-            opacity,
-            transition: 'opacity 150ms linear'
+            opacity
           }}
         />
       </div>
