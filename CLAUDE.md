@@ -116,8 +116,12 @@ Files modified:
 
 ```
 
-### 2. Update Development Log
-Add a new entry to `_docs/dev_diary/devlog.md` at the top of the file with:
+### 2. Create Development Log Entry
+Create a new file for this session's log in `_docs/devlogs/`:
+- **Filename**: `YYYY-MM-DD-descriptive-title.md` (use kebab-case for the title)
+- **Location**: `_docs/devlogs/`
+
+Add these fields in the entry:
 - **Date**: Current date in YYYY-MM-DD format
 - **Title**: Descriptive title of the work completed
 - **Problem**: Clear description of the issue encountered
@@ -126,9 +130,12 @@ Add a new entry to `_docs/dev_diary/devlog.md` at the top of the file with:
 - **Files Modified**: List of all files that were changed
 - **Outcome**: Description of the final result and user impact
 
-Follow this format:
+Include the following content in the new file:
 ```markdown
-## YYYY-MM-DD - Descriptive Title
+# YYYY-MM-DD - Descriptive Title
+
+**Date:** YYYY-MM-DD
+**Title:** Descriptive Title
 
 **Problem:** [Clear description of the issue]
 
@@ -168,6 +175,6 @@ Co-Authored-By: Claude noreply@anthropic.com"
 Ensure all changes are properly committed by:
 - Checking `git status` shows no uncommitted changes
 - Verifying the commit appears in the remote repository
-- Confirming the dev log entry is present in `_docs/dev_diary/devlog.md`
+- Confirming a new dev log file exists in `_docs/devlogs/` with the correct filename format
 
 This workflow ensures comprehensive documentation of all development work and maintains a clear history of project evolution for future reference.
