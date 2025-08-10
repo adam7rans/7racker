@@ -47,3 +47,6 @@ cloudflare-new-admin-password.txt
 src/app/work/
 src/lib/work-api.ts
 src/lib/work-auth.ts
+
+# ignore local Cloudflare worker sources (kept in private repo)
+cloudflare/
