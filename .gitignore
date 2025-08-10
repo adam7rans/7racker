@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# private admin token (never commit)
+cloudflare-new-admin-password.txt
+
+# never commit public /work code
+src/app/work/
+src/lib/work-api.ts
+src/lib/work-auth.ts
